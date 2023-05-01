@@ -4,6 +4,7 @@
  */
 export default async function decorate(block) {
   // fetch nav content
+  /*
   const navPath = '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
@@ -25,4 +26,5 @@ export default async function decorate(block) {
 
     block.append(nav);
   }
+  */
 }
