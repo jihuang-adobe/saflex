@@ -1,0 +1,7 @@
+.dropdown-hover:hover>.dropdown-menu {
+    display: inline-block;
+}
+
+.header-wrapper {
+    min-height: 58px;
+}

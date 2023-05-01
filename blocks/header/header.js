@@ -4,7 +4,6 @@
  */
 export default async function decorate(block) {
   // fetch nav content
-  /*
   const navPath = '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
@@ -18,13 +17,69 @@ export default async function decorate(block) {
 
     const navElement = nav.getElementsByClassName('navigation')[0];
     navElement.classList.add('row');
-    navElement.parentElement.classList.add('container-fluid');
+    navElement.parentElement.classList.add('container');
 
     [...navElement.children].forEach((col, index) => {
-      col.classList.add('col');
+      switch (index) {
+        case 0:
+          col.classList.add('col-2');
+          col.querySelector('img').classList.add('img-fluid');
+          break;
+        case 1:
+          col.classList.add('col-7');
+          break;
+        case 2:
+            col.classList.add('col-3');
+            break;
+        default:
+            col.classList.add('col-12');
+          break;
+      }
+      
+      const topUlElement = col.querySelector('ul');
+ 
+      if(topUlElement) {
+        topUlElement.classList.add('navbar-nav', 'nav-fill');
+
+        // all li are nav-item
+        const allLiElements = topUlElement.querySelectorAll('li');
+        allLiElements.forEach((liElement) => {
+          liElement.classList.add('nav-item');
+        });
+
+        // all a are nav-link
+        const allAnchorElements = topUlElement.querySelectorAll('a');
+        allAnchorElements.forEach((anchorElement) => {
+          anchorElement.classList.add('nav-link');
+        });
+
+        const topLiElements = topUlElement.querySelectorAll(':scope > li');
+
+        topLiElements.forEach((topLiElement) => {
+          topLiElement.classList.add('nav-item');
+          const topLiAnchorElement = topLiElement.querySelector('a');
+
+          if(topLiAnchorElement) {
+            topLiAnchorElement.classList.add('nav-link');
+            console.log(index);
+            // if it is 3rd col
+            if(index == 2) {
+              
+              topLiAnchorElement.classList.add('btn', 'btn-secondary', 'text-white');
+            }
+          }
+
+          const subUlLement = topLiElement.querySelector('ul');
+          if(subUlLement){
+            topLiElement.classList.add('dropdown-hover');
+
+            subUlLement.classList.add('dropdown-menu');
+          }
+        });
+      }
+
     });
 
     block.append(nav);
   }
-  */
 }

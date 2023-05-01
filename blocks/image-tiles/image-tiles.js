@@ -10,7 +10,7 @@ export default async function decorate(block) {
 
   //img should be full width
   block.querySelectorAll('picture img').forEach((img) => {
-    img.classList.add('w-100');
+    img.classList.add('img-fluid');
   });
 
   [...block.children].forEach((row, index) => {
