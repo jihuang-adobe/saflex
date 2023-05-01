@@ -1,4 +1,3 @@
-import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 import { generateUUID } from '../../scripts/scripts.js';
 
 /**

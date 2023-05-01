@@ -1,3 +1,5 @@
+import { generateUUID } from '../../scripts/scripts.js';
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -12,12 +14,25 @@ export default async function decorate(block) {
 
     // decorate nav DOM
     const nav = document.createElement('nav');
+
     nav.classList.add('navbar', 'navbar-expand-lg', 'bg-light');
     nav.innerHTML = html;
 
     const navElement = nav.getElementsByClassName('navigation')[0];
-    navElement.classList.add('row');
-    navElement.parentElement.classList.add('container');
+    const navElementId = generateUUID();
+    const navElementParent = navElement.parentElement;
+
+    const mobileNavButton = document.createElement('button');
+    mobileNavButton.innerHTML = `
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#{{navElementId}}" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    `;
+
+    navElement.classList.add('row', 'collapse', 'navbar-collapse');
+    navElement.setAttribute('id', navElementId);
+
+    navElementParent.classList.add('container');
 
     [...navElement.children].forEach((col, index) => {
       switch (index) {
@@ -61,7 +76,7 @@ export default async function decorate(block) {
 
           if(topLiAnchorElement) {
             topLiAnchorElement.classList.add('nav-link');
-            console.log(index);
+            
             // if it is 3rd col
             if(index == 2) {
               
