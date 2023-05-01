@@ -42,16 +42,7 @@ export default async function decorate(block) {
       row.children[1].classList.add('d-md-block');
       */
 
-      row.children[1].classList.add('carousel-caption-custom');
-      row.children[1].classList.add('position-absolute');
-      row.children[1].classList.add('top-50');
-      row.children[1].classList.add('start-25');
-      row.children[1].classList.add('w-25');
-      row.children[1].classList.add('translate-middle-y');
-      row.children[1].classList.add('p-4');
-      row.children[1].classList.add('text-bg-dark');
-      row.children[1].classList.add('bg-opacity-75');
-      row.children[1].classList.add('fs-3');
+      row.children[1].classList.add('carousel-caption', 'translate-middle-y', 'p-4', 'text-bg-dark', 'bg-opacity-75', 'fs-3');
 
       // buttons
       row.children[1].querySelectorAll('a').forEach((link) => {
