@@ -1,11 +1,11 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { generateUUID } from '../../scripts/scripts.js';
 
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  console.log(block);
   var templateJSON = { items: [] };
   [...block.children].forEach((row) => {
     templateJSON.items.push({
@@ -38,10 +38,12 @@ export default async function decorate(block) {
   </div>
   `;
 
+  /*
   var handlebarsTemplate = Handlebars.compile(htmlTemplate);
   
   const DOMElement = document.createElement('div');
   DOMElement.innerHTML = handlebarsTemplate(templateJSON);
 
   block.parentElement.append(DOMElement);
+  */
 }

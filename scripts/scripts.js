@@ -90,6 +90,13 @@ export function addFavIcon(href) {
 }
 
 /**
+ * helper function to generate uuid
+ */
+export function generateUUID() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
