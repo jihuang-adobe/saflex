@@ -6,44 +6,45 @@ import { generateUUID } from '../../scripts/scripts.js';
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  var templateJSON = { items: [] };
-  [...block.children].forEach((row) => {
-    templateJSON.items.push({
-      imgurl: row.children[0].querySelector('picture img').src,
-      imgalt: row.children[1].textContent,
-      descriptionhtml: row.children[1].innerHTML
-    });
+  const blockId = generateUUID()
+  block.setAttribute('id', blockId);
+  block.setAttribute('data-bs-ride', 'true');
+  block.classList.add('slide');
+
+  var carouselIndicators = document.createElement('div');
+  carouselIndicators.classList.add('carousel-indicators');
+
+  var carouselInners = document.createElement('div');
+  carouselInners.classList.add('carousel-inner');
+
+  [...block.children].forEach((row, index) => {
+    var carouseelIndicator = document.createElement('button');
+    carouseelIndicator.setAttribute('type', 'button');
+    carouseelIndicator.setAttribute('data-bs-target', '#' + blockId);
+    carouseelIndicator.setAttribute('data-bs-slide-to', index);
+    carouseelIndicator.setAttribute('aria-label', row.children[1].textContent);
+
+    if(index == 0) {
+      carouseelIndicator.setAttribute('class', 'active');
+      carouseelIndicator.setAttribute('aria-current', 'true');
+    }
+
+    carouselIndicators.append(carouseelIndicator);
+
+    row.classList.add('carousel-item');
+    if(index == 0) {
+      row.classList.add('active');
+    }
+    
+    if(row.children[1]) {
+      row.children[1].classList.add('carousel-caption');
+      row.children[1].classList.add('d-none');
+      row.children[1].classList.add('d-md-block');
+    }
+
+    carouselInners.append(row);
   });
 
-  console.log(templateJSON)
-
-  var htmlTemplate = `
-  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-indicators">
-        {{#each items}}
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{@index}}" aria-label="{{this.imgalt}}"></button>
-        {{/each}}
-    </div>
-    <div class="carousel-inner">
-      {{#each items}}
-      <div class="carousel-item active">
-        <img src="{{this.imgurl}}" class="d-block w-100" alt="{{this.imgalt}}">
-        <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
-        </div>
-      </div>
-      {{/each}}
-    </div>
-  </div>
-  `;
-
-  /*
-  var handlebarsTemplate = Handlebars.compile(htmlTemplate);
-  
-  const DOMElement = document.createElement('div');
-  DOMElement.innerHTML = handlebarsTemplate(templateJSON);
-
-  block.parentElement.append(DOMElement);
-  */
+  block.append(carouselIndicators);
+  block.append(carouselInners);
 }
