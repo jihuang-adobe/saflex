@@ -17,7 +17,12 @@ export default async function decorate(block) {
     colElement.classList.add('col-12');
     colElement.classList.add('g-2');
 
-    if(!row.children[1].innerHTML) {
+    if(row.children[1].innerHTML) {
+      row.classList.add('row');
+
+      row.children[0].classList.add('col-8');
+      row.children[1].classList.add('col-4');
+    } else {
       colElement.classList.add('col-md-6');
     }
 
