@@ -11,12 +11,24 @@ export default async function decorate(block) {
   var rowElement = document.createElement('div');
   rowElement.classList.add('row');
 
+  //img should be full width
+  block.querySelectorAll('picture img').forEach((img) => {
+    img.classList.add('w-100');
+  });
+
   [...block.children].forEach((row, index) => {
     var colElement = document.createElement('div');
 
     colElement.classList.add('col-12');
     colElement.classList.add('g-2');
 
+    var decorativeWrapperElement = document.createElement('div');
+    decorativeWrapperElement.classList.add('border');
+    decorativeWrapperElement.classList.add('border-dark');
+    decorativeWrapperElement.classList.add('p-3');
+    decorativeWrapperElement.classList.add('bg-white');
+
+    // if 2nd child element has content, then this is full content
     if(row.children[1].innerHTML) {
       row.classList.add('row');
 
@@ -25,11 +37,6 @@ export default async function decorate(block) {
     } else {
       colElement.classList.add('col-md-6');
     }
-
-    row.classList.add('border');
-    row.classList.add('border-dark');
-    row.classList.add('p-3');
-    row.classList.add('bg-white');
 
     var titleButton = row.querySelector('.button-container .button');
     if(titleButton) {
@@ -42,13 +49,13 @@ export default async function decorate(block) {
     if(linkButton) {
       linkButton.classList.add('btn');
       linkButton.classList.add('btn-dark');
-      linkButton.classList.add('btn-lg');
 
       linkButton.parentElement.classList.add('d-grid');
       linkButton.parentElement.classList.add('justify-content-md-end');
     }
 
-    colElement.append(row);
+    decorativeWrapperElement.append(row);
+    colElement.append(decorativeWrapperElement);
     rowElement.append(colElement);
   });
 
