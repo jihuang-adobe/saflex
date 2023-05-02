@@ -1,3 +1,7 @@
 body {
   background-color: #ebebeb;
 }
+
+.btn {
+  border-radius: 0px;
+}
