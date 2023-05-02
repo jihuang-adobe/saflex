@@ -12,9 +12,9 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     row.classList.add('row');
 
-    row.children[0].classList.add('col-2');
-    row.children[1].classList.add('col-8');
-    row.children[2].classList.add('col-2');
+    row.children[0].classList.add('col-12', 'col-md-2');
+    row.children[1].classList.add('col-12', 'col-md-8');
+    row.children[2].classList.add('col-12', 'col-md-2');
 
     // row 0, filters
     const navUL = row.children[0].querySelector('ul');
@@ -70,7 +70,7 @@ export default async function decorate(block) {
   
         products.data.forEach((productObj) => {
           const product = document.createElement('div');
-          product.classList.add('col-4','gx-2');
+          product.classList.add('col-6', 'col-md-4','gx-2');
   
           product.innerHTML = `
           <a href="${productObj['Link']}" class="text-decoration-none">
