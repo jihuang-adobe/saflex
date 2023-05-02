@@ -13,8 +13,8 @@ export default async function decorate(block) {
     row.classList.add('row');
 
     row.children[0].classList.add('col-12', 'col-md-2');
-    row.children[1].classList.add('col-12', 'col-md-8');
-    row.children[2].classList.add('col-12', 'col-md-2');
+    row.children[1].classList.add('col-12', 'col-md-7');
+    row.children[2].classList.add('col-12', 'col-md-3');
 
     // row 0, filters
     const navUL = row.children[0].querySelector('ul');
