@@ -1,0 +1,17 @@
+.products-listing .nav-item:hover {
+    background-color: #cbc5b7;
+    color: #000;
+}
+
+.products-listing .nav-item.active {
+    background-color: #8fc1d6;
+}
+
+.products-listing .card:hover {
+    box-shadow: 0 0 10px #aaa;
+}
+
+.products-listing .card-title {
+    background-color: #c5c7cc;
+}
+
